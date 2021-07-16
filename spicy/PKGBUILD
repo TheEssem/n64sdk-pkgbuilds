@@ -1,0 +1,20 @@
+# Maintainer: Essem <smswessem@gmail.com>
+
+pkgname=spicy
+pkgver=0.5.2.fe553fc
+pkgrel=1
+pkgdesc="Clone of N64 sdk's mild.exe"
+url="https://github.com/TheEssem/spicy"
+arch=('x86_64')
+license=('MIT')
+source=("git+https://github.com/TheEssem/spicy.git")
+sha256sums=('SKIP')
+
+build() {
+  cd "${srcdir}"/spicy
+  go build -o spicy ./cmd/spicy/main.go
+}
+
+package() {
+  install -Dm 755 "${srcdir}"/spicy/spicy "${pkgdir}"/usr/bin/spicy
+}

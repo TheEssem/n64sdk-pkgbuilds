@@ -1,0 +1,25 @@
+# Maintainer: Essem <smswessem@gmail.com>
+
+pkgname=vadpcm-tools
+pkgver=1.0.1.72bf503
+pkgrel=1
+pkgdesc="VADPCM audio conversion tools"
+url="https://github.com/n64decomp/sdk-tools"
+depends=('audiofile')
+arch=('x86_64')
+license=('custom')
+source=("git+https://github.com/n64decomp/sdk-tools.git")
+sha256sums=('SKIP')
+
+build() {
+  cd "${srcdir}"/sdk-tools/adpcm
+  make -j$(nproc)
+  cd "${srcdir}"/sdk-tools/tabledesign
+  make -j$(nproc)
+}
+
+package() {
+  install -Dm 755 "${srcdir}"/sdk-tools/adpcm/vadpcm_dec_native "${pkgdir}"/usr/bin/vadpcm_dec
+  install -Dm 755 "${srcdir}"/sdk-tools/adpcm/vadpcm_enc_native "${pkgdir}"/usr/bin/vadpcm_enc
+  install -Dm 755 "${srcdir}"/sdk-tools/tabledesign/tabledesign_native "${pkgdir}"/usr/bin/tabledesign
+}

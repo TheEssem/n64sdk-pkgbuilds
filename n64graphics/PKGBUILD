@@ -1,0 +1,23 @@
+# Maintainer: Essem <smswessem@gmail.com>
+
+pkgname=n64graphics
+pkgver=1.0.1.f9982e0
+pkgrel=1
+pkgdesc="Converts graphics data from PNG files into RGBA, IA, or CI N64 graphics data"
+url="https://github.com/queueRAM/sm64tools"
+arch=('x86_64')
+license=('MIT')
+source=("git+https://github.com/CrashOveride95/n64sdkmod.git")
+sha256sums=('SKIP')
+
+build() {
+  cd "${srcdir}"/n64sdkmod/packages/n64graphics/usr/src/PR/tools/n64graphics
+  make -j$(nproc)
+  cd ../n64graphics_ci
+  make -j$(nproc)
+}
+
+package() {
+  install -Dm 755 "${srcdir}"/n64sdkmod/packages/n64graphics/usr/src/PR/tools/n64graphics/n64graphics "${pkgdir}"/usr/bin/n64graphics
+  install -Dm 755 "${srcdir}"/n64sdkmod/packages/n64graphics/usr/src/PR/tools/n64graphics_ci/n64graphics_ci "${pkgdir}"/usr/bin/n64graphics_ci
+}

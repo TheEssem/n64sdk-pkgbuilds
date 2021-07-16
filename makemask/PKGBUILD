@@ -1,0 +1,21 @@
+# Maintainer: Essem <smswessem@gmail.com>
+
+pkgname=makemask
+pkgver=0.2.1.c0f4ffc
+pkgrel=1
+pkgdesc="Open source replacement of the n64 sdk's makemask.exe"
+url="https://github.com/depp/makemask"
+makedepends=('go')
+arch=('x86_64')
+license=('GPL2')
+source=("git+https://github.com/depp/makemask.git")
+sha256sums=('SKIP')
+
+build() {
+  cd "${srcdir}"/makemask
+  go build -o makemask main.go crc.go bindata.go
+}
+
+package() {
+  install -Dm 755 "${srcdir}"/makemask/makemask "${pkgdir}"/usr/bin/makemask
+}
