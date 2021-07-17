@@ -1,0 +1,3 @@
+post_install() {
+  echo "Caution: The N64_CC, N64_AS etc environment variables are set to the mips-n64 GCC toolchain by default. Consult https://github.com/CrashOveride95/n64sdkmod/blob/master/INSTALL.md for information on building these if your package manager does not provide this GCC toolchain."
+}

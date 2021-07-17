@@ -17,16 +17,6 @@ replaces=("${_target}-gcc-stage1")
 source=("http://gcc.gnu.org/pub/gcc/releases/gcc-${pkgver}/gcc-${pkgver}.tar.xz")
 sha256sums=('4c4a6fb8a8396059241c2e674b85b351c26a5d678274007f076957afa1cc9ddf')
 
-prepare() {
-  cd gcc-${pkgver}
-
-  # Do not run fixincludes
-  #sed -i 's@\./fixinc\.sh@-c true@' gcc/Makefile.in
-
-  # hack! - some configure tests for header files using "$CPP $CPPFLAGS"
-  #sed -i "/ac_cpp=/s/\$CPPFLAGS/\$CPPFLAGS -O2/" {libiberty,gcc}/configure
-}
-
 build() {
   mkdir -p "${srcdir}"/build-gcc
   cd build-gcc
@@ -74,10 +64,4 @@ package() {
   cd build-gcc
 
   make DESTDIR="${pkgdir}" install-strip-gcc
-
-  # strip target binaries
-  #find "$pkgdir"/opt/crashsdk/lib/gcc/$_target/$pkgver "$pkgdir"/opt/crashsdk/$_target/lib -type f -and \( -name \*.a -or -name \*.o \) -exec $_target-objcopy -R .comment -R .note -R .debug_info -R .debug_aranges -R .debug_pubnames -R .debug_pubtypes -R .debug_abbrev -R .debug_line -R .debug_str -R .debug_ranges -R .debug_loc '{}' \;
-
-  # strip host binaries
-  #find "$pkgdir"/opt/crashsdk/bin/ "$pkgdir"/opt/crashsdk/lib/gcc/$_target/$pkgver -type f -and \( -executable \) -exec strip '{}' \;
 }

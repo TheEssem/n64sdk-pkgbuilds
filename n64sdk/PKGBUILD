@@ -1,16 +1,18 @@
 # Maintainer: Essem <smswessem@gmail.com>
 
-pkgname=n64sdk-common
+pkgname=n64sdk
 pkgver=2.0L
 pkgrel=1
-pkgdesc="Include files used in both N64 SDK libraries"
+pkgdesc="N64 SDK libraries and include files"
 url="https://github.com/CrashOveride95/n64sdkmod"
 arch=('any')
+options=('!strip')
+depends=('n64sdk-common')
+conflicts=('iquesdk')
 license=('custom')
-install="$pkgname.install"
 source=("git+https://github.com/CrashOveride95/n64sdkmod.git")
 sha256sums=('SKIP')
 
 package() {
-  cp -dr --no-preserve='ownership,mode' "${srcdir}/n64sdkmod/packages/n64sdk-common/usr" "${pkgdir}"
+  cp -dr --no-preserve='ownership,mode' "${srcdir}/n64sdkmod/packages/n64sdk/usr" "${pkgdir}"
 }
