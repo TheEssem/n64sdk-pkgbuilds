@@ -5,6 +5,7 @@ pkgver=1.0.1.f9982e0
 pkgrel=1
 pkgdesc="Converts graphics data from PNG files into RGBA, IA, or CI N64 graphics data"
 url="https://github.com/queueRAM/sm64tools"
+provides=('n64graphics' 'n64graphics_ci')
 arch=('x86_64')
 license=('MIT')
 source=("git+https://github.com/CrashOveride95/n64sdkmod.git")

@@ -6,6 +6,7 @@ pkgrel=1
 pkgdesc="Open source replacement of the n64 sdk's makemask.exe"
 url="https://github.com/depp/makemask"
 makedepends=('go')
+provides=('makemask')
 arch=('x86_64')
 license=('GPL2')
 source=("git+https://github.com/depp/makemask.git")

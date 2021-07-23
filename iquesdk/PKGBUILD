@@ -1,19 +1,19 @@
 # Maintainer: Essem <smswessem@gmail.com>
 
-pkgname=n64sdk
+pkgname=iquesdk
 pkgver=2.0L
 pkgrel=1
-pkgdesc="N64 SDK libraries and include files"
+pkgdesc="iQue SDK libraries and include files"
 url="https://github.com/CrashOveride95/n64sdkmod"
 arch=('any')
 options=('!strip')
 depends=('n64sdk-common')
-conflicts=('iquesdk')
+conflicts=('n64sdk')
 provides=('n64-buildenv')
 license=('custom')
 source=("git+https://github.com/CrashOveride95/n64sdkmod.git")
 sha256sums=('SKIP')
 
 package() {
-  cp -dr --no-preserve='ownership,mode' "${srcdir}/n64sdkmod/packages/n64sdk/usr" "${pkgdir}"
+  cp -dr --no-preserve='ownership,mode' "${srcdir}/n64sdkmod/packages/iquesdk/usr" "${pkgdir}"
 }
