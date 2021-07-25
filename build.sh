@@ -23,5 +23,8 @@ makepkg -fs
 cd ../n64graphics
 makepkg -fs
 
+cd ../rspcode-src
+makepkg -fs
+
 cd ../libstdc++296
 CARCH="i686" linux32 makepkg -fs
