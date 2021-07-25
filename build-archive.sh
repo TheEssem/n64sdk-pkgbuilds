@@ -58,6 +58,10 @@ makepkg -fd
 export PKG_DEPENDS=
 export PKG_SUGGESTS=
 
+export PKG_NAME=kantan-demos
+export PKG_DESC="N64 SDK tutorial demos from the \"INTRO TO N64\" manual"
+makepkg -f
+
 export PKG_NAME=libnusys
 export PKG_DESC="NuSystem, a library designed to help newcomers understand the N64's architecture"
 export PKG_VER=2.0.7
@@ -82,7 +86,7 @@ makepkg -fd
 export PKG_DEPENDS=
 
 export PKG_NAME=tutorial-demos
-export PKG_DESC="N64 SDK tutorial demos"
+export PKG_DESC="N64 SDK tutorial demos from the \"N64 TUTORIAL\" manual"
 export PKG_VER=2.0L
 makepkg -f
 
