@@ -6,6 +6,7 @@ pkgrel=1
 pkgdesc="VADPCM audio conversion tools"
 url="https://github.com/n64decomp/sdk-tools"
 depends=('audiofile')
+makedepends=('git')
 provides=('tabledesign' 'vadpcm_dec' 'vadpcm_enc')
 arch=('x86_64')
 license=('custom')

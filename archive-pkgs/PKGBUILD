@@ -1,0 +1,25 @@
+# Maintainer: Essem <smswessem@gmail.com>
+
+pkgname=$PKG_NAME
+pkgver=$PKG_VER
+pkgrel=1
+pkgdesc=$PKG_DESC
+url="https://github.com/CrashOveride95/n64sdkmod"
+arch=("$PKG_ARCH")
+makedepends=('git')
+options=('!strip')
+depends=($PKG_DEPENDS)
+conflicts=($PKG_CONFLICTS)
+provides=($PKG_PROVIDES)
+optdepends=($PKG_SUGGESTS)
+license=('custom')
+if [ -f "$pkgname.install" ];
+then
+install="$pkgname.install"
+fi
+source=("git+https://github.com/CrashOveride95/n64sdkmod.git")
+sha256sums=('SKIP')
+
+package() {
+  cp -dr --no-preserve='ownership,mode' "${srcdir}/n64sdkmod/packages/$PKG_NAME/$PKG_BASEDIR" "${pkgdir}"
+}

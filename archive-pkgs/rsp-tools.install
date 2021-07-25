@@ -1,0 +1,3 @@
+post_install() {
+  echo "Caution: Remember to add /etc/n64/usr/sbin to your PATH!"
+}

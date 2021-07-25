@@ -6,6 +6,7 @@ pkgrel=1
 pkgdesc="Clone of N64 sdk's mild.exe"
 url="https://github.com/TheEssem/spicy"
 provides=('spicy')
+makedepends=('go' 'git')
 arch=('x86_64')
 license=('MIT')
 source=("git+https://github.com/TheEssem/spicy.git")
