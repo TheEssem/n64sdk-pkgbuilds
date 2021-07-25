@@ -1,30 +1,30 @@
 #!/bin/sh
 
-./build-archive.sh
+./build-archive.sh "$@"
 
 cd mips-n64-binutils
-makepkg -fsi
+makepkg -fsi "$@"
 
 cd ../mips-n64-gcc
-makepkg -fs
+makepkg -fs "$@"
 
 cd ../root-compatibility-environment
-makepkg -f
+makepkg -f "$@"
 
 cd ../vadpcm-tools
-makepkg -fs
+makepkg -fs "$@"
 
 cd ../spicy
-makepkg -fs
+makepkg -fs "$@"
 
 cd ../makemask
-makepkg -fs
+makepkg -fs "$@"
 
 cd ../n64graphics
-makepkg -fs
+makepkg -fs "$@"
 
 cd ../rspcode-src
-makepkg -fd
+makepkg -fd "$@"
 
 cd ../libstdc++296
-CARCH="i686" linux32 makepkg -fs
+makepkg -fs "$@"
