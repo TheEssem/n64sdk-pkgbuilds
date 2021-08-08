@@ -2,7 +2,7 @@
 
 pkgname=$PKG_NAME
 pkgver=$PKG_VER
-pkgrel=1
+pkgrel=2
 pkgdesc=$PKG_DESC
 url="https://github.com/CrashOveride95/n64sdkmod"
 arch=($PKG_ARCH)
