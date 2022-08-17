@@ -1,19 +1,17 @@
 # Maintainer: Essem <smswessem@gmail.com>
 
 _target=mips-n64
-pkgname=${_target}-gcc
+pkgname=${_target}-gcc-stage1
 pkgver=11.2.0
 pkgrel=2
-pkgdesc="The GNU Compiler Collection (${_target})"
+pkgdesc="The GNU Compiler Collection. Stage 1 for toolchain building (${_target})"
 arch=('x86_64')
 license=('GPL' 'LGPL' 'FDL' 'custom')
 url="http://www.gnu.org/software/gcc/"
 depends=('libmpc' 'zstd')
 makedepends=('gmp' 'mpfr' "${_target}-binutils")
 options=('!emptydirs' '!distcc' '!strip')
-conflicts=("${_target}-gcc-stage1")
-provides=("${_target}-gcc-stage1")
-replaces=("${_target}-gcc-stage1")
+provides=("${_target}-gcc")
 source=("http://gcc.gnu.org/pub/gcc/releases/gcc-${pkgver}/gcc-${pkgver}.tar.xz")
 sha256sums=('d08edc536b54c372a1010ff6619dd274c0f1603aa49212ba20f7aa2cda36fa8b')
 
@@ -32,16 +30,14 @@ build() {
   CXXFLAGS=${CXXFLAGS/-Werror=format-security/}
   INSTALL_PATH=/opt/crashsdk
 
-  CFLAGS="-O2" CXXFLAGS="-O2" "${srcdir}"/gcc-${pkgver}/configure \
+  "${srcdir}"/gcc-${pkgver}/configure \
     --prefix="$INSTALL_PATH" \
-    --with-gnu-as=${INSTALL_PATH}/bin/mips-n64-as \
-    --with-gnu-ld=${INSTALL_PATH}/bin/mips-n64-ld \
-    --enable-checking=release \
-    --program-prefix=mips-n64- \
     --target=mips64-elf \
+    --program-prefix=mips-n64- \
     --with-arch=vr4300 \
     --with-tune=vr4300 \
-    --enable-languages=c,c++ \
+    --enable-languages=c \
+    --without-headers \
     --with-newlib \
     --disable-libssp \
     --disable-multilib \
@@ -50,14 +46,17 @@ build() {
     --disable-threads \
     --disable-win32-registry \
     --disable-nls \
+    --disable-werror \
     --with-system-zlib
 
-  make -j$(nproc) CFLAGS_FOR_TARGET="-mabi=32 -ffreestanding -mfix4300 -G 0 -fno-PIC -mno-check-zero-division -Os" CXXFLAGS_FOR_TARGET="-mabi=32 -ffreestanding -mfix4300 -G 0 -mno-check-zero-division -fno-PIC -fno-rtti -Os -fno-exceptions"
+  make all-gcc -j$(nproc)
+  make all-target-libgcc -j$(nproc) CFLAGS_FOR_TARGET="-mabi=32 -ffreestanding -mfix4300 -G 0 -mno-check-zero-division -O2"
 }
 
 package() {
   cd build-gcc
-  make DESTDIR="${pkgdir}" install-strip
+  make DESTDIR="${pkgdir}" install-gcc
+  make DESTDIR="${pkgdir}" install-target-libgcc
 
   rm -r "$pkgdir"/opt/crashsdk/share/info
 }

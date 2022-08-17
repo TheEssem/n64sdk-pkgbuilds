@@ -2,29 +2,38 @@
 
 ./build-archive.sh "$@"
 
-cd mips-n64-binutils
-makepkg -fsi "$@"
+cd n64graphics
+makepkg -Cfs "$@"
+
+cd ../qemu-irix
+makepkg --noconfirm -Cfsi "$@"
+
+cd ../mips-n64-binutils
+makepkg --noconfirm -Cfsi "$@"
+
+cd ../mips-n64-gcc-stage1
+makepkg --noconfirm -Cfsi "$@"
+
+cd ../mips-n64-newlib
+makepkg --noconfirm -Cfsi "$@"
 
 cd ../mips-n64-gcc
-makepkg -fs "$@"
+makepkg --noconfirm -Cfsi "$@"
 
 cd ../root-compatibility-environment
-makepkg -f "$@"
+makepkg -Cf "$@"
 
 cd ../vadpcm-tools
-makepkg -fs "$@"
-
-cd ../spicy
-makepkg -fs "$@"
-
-cd ../makemask
-makepkg -fs "$@"
-
-cd ../n64graphics
-makepkg -fs "$@"
-
-cd ../rspcode-src
-makepkg -fd "$@"
+makepkg --noconfirm -Cfsi "$@"
 
 cd ../libstdc++296
-makepkg -fs "$@"
+makepkg -Cfs "$@"
+
+cd ../spicy
+makepkg -Cfs "$@"
+
+cd ../makemask
+makepkg -Cfs "$@"
+
+cd ../rspcode-src
+makepkg -Cfd "$@"

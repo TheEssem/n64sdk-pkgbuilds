@@ -1,0 +1,33 @@
+# Maintainer: Essem <smswessem@gmail.com>
+
+_target=mips-n64
+pkgname=${_target}-newlib
+pkgver=4.1.0
+pkgrel=1
+pkgdesc="A C standard library implementation intended for use on embedded systems (${_target})"
+url='https://www.sourceware.org/newlib/'
+arch=('x86_64')
+license=('BSD')
+makedepends=(${_target}-gcc)
+source=(https://sourceware.org/pub/newlib/newlib-${pkgver}.tar.gz)
+sha256sums=('f296e372f51324224d387cc116dc37a6bd397198756746f93a2b02e9a5d40154')
+
+build() {
+  cd newlib-${pkgver}
+
+  INSTALL_PATH=/opt/crashsdk
+  
+  RANLIB_FOR_TARGET=${INSTALL_PATH}/bin/mips-n64-ranlib CC_FOR_TARGET=${INSTALL_PATH}/bin/mips-n64-gcc CXX_FOR_TARGET=${INSTALL_PATH}/bin/mips-n64-g++ AR_FOR_TARGET=${INSTALL_PATH}/bin/mips-n64-ar CFLAGS_FOR_TARGET="-mabi=32 -ffreestanding -mfix4300 -G 0 -mno-check-zero-division -fno-PIC -O2" CXXFLAGS_FOR_TARGET="-mabi=32 -ffreestanding -mfix4300 -G 0 -mno-check-zero-division -fno-PIC -O2" ./configure \
+    --target=mips64-elf \
+    --prefix="$INSTALL_PATH" \
+    --with-cpu=mips64vr4300 \
+    --disable-threads \
+    --disable-libssp \
+    --disable-werror
+  make -j$(nproc)
+}
+
+package() {
+  cd newlib-${pkgver}
+  make DESTDIR="$pkgdir" install
+}

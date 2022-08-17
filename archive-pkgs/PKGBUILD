@@ -1,8 +1,9 @@
 # Maintainer: Essem <smswessem@gmail.com>
 
+pkgbase=n64sdk
 pkgname=$PKG_NAME
 pkgver=$PKG_VER
-pkgrel=2
+pkgrel=3
 pkgdesc=$PKG_DESC
 url="https://github.com/CrashOveride95/n64sdkmod"
 arch=($PKG_ARCH)

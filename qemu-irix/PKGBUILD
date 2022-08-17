@@ -1,0 +1,61 @@
+# Maintainer: queueRAM <queueRAM <at> gmail <dot> com>
+
+# adapted from https://aur.archlinux.org/packages/qemu-irix-git
+
+pkgname=qemu-irix
+pkgdesc="QEMU with IRIX userland support"
+pkgver=v2.11.0.r2175.gd2857ad2b5
+pkgrel=1
+arch=('i686' 'x86_64' 'armv7h')
+license=(GPL2 LGPL2.1)
+url="https://github.com/n64decomp/qemu-irix"
+depends=(glib2)
+makedepends=(python git)
+source=('git+https://github.com/TheEssem/qemu-irix.git') # upstream is broken on glibc >=2.36, use fork instead
+sha256sums=('SKIP')
+
+pkgver() {
+  cd "${srcdir}/${pkgname}"
+  git describe --long | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
+}
+
+prepare() {
+  cd "${srcdir}/${pkgname}"
+  mkdir -p build
+}
+
+build() (
+  cd ${srcdir}/${pkgname}/build
+
+  # headless configure with IRIX targets
+  ../configure \
+    --prefix=/usr \
+    --sysconfdir=/etc \
+    --localstatedir=/var \
+    --libexecdir=/usr/lib/qemu \
+    --audio-drv-list= \
+    --disable-bluez \
+    --disable-sdl \
+    --disable-gtk \
+    --disable-vte \
+    --disable-opengl \
+    --disable-virglrenderer \
+    --disable-blobs \
+    --disable-tools \
+    --disable-guest-agent \
+    --target-list=irix-linux-user,irixn32-linux-user,irix64-linux-user \
+    --disable-capstone \
+    --disable-debug-info \
+    --disable-werror \
+    --extra-cflags="-fmacro-prefix-map=${srcdir}=."
+
+  make -j$(nproc)
+)
+
+package() {
+  make -C "${srcdir}/${pkgname}/build" DESTDIR="${pkgdir}" install
+
+  # remove potentially conflicting binary and docs
+  cd "${pkgdir}"
+  rm -r usr/lib usr/share
+}

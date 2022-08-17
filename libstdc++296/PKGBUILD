@@ -3,7 +3,7 @@
 
 # adapted from https://aur.archlinux.org/packages/libstdc++296-bin
 
-pkgname=libstdc++296
+pkgname=lib32-libstdc++296
 pkgver=2.96.126
 pkgrel=1
 pkgdesc="Standard C++ libraries for Red Hat 7.3 backwards compatibility compiler. With additions from OpenSUSE 13.1. Provides libstdc++-libc6.2-2.so.3"
@@ -11,12 +11,12 @@ arch=('any')
 url="https://ftp5.gwdg.de/pub/opensuse/discontinued/distribution"
 license=('GPL')
 makedepends=('rpmextract')
-provides=("$pkgname")
+provides=("libstdc++296")
 source=("libstdc++296-i686.rpm::${url}/13.1/repo/oss/suse/i586/compat-2010.1.31-17.1.2.i586.rpm")
 noextract=()
 md5sums=('6048df58c6459b5d4cf43528dfe9d0a3')
 
 package() {
   cd "$pkgdir"
-  rpmextract.sh "$srcdir"/"$pkgname-i686.rpm"
+  rpmextract.sh "$srcdir"/"libstdc++296-i686.rpm"
 }
