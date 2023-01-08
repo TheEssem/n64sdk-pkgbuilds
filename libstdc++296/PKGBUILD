@@ -10,6 +10,7 @@ pkgdesc="Standard C++ libraries for Red Hat 7.3 backwards compatibility compiler
 arch=('any')
 url="https://ftp5.gwdg.de/pub/opensuse/discontinued/distribution"
 license=('GPL')
+groups=(n64sdk)
 makedepends=('rpmextract')
 provides=("libstdc++296")
 source=("libstdc++296-i686.rpm::${url}/13.1/repo/oss/suse/i586/compat-2010.1.31-17.1.2.i586.rpm")

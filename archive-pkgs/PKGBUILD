@@ -7,6 +7,7 @@ pkgrel=3
 pkgdesc=$PKG_DESC
 url="https://github.com/CrashOveride95/n64sdkmod"
 arch=($PKG_ARCH)
+groups=(n64sdk)
 makedepends=('git')
 options=('!strip')
 depends=($PKG_DEPENDS)

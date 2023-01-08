@@ -2,9 +2,11 @@
 **/pkg
 **/*.pkg.tar.*
 **/*.log
+archive-pkgs/n64sdkmod
 makemask/makemask
 mips-n64-binutils/binutils-*.tar.xz
 mips-n64-gcc/gcc-*.tar.xz
+mips-n64-gcc-stage1/gcc-*.tar.xz
 mips-n64-newlib/newlib-*.tar.gz
 vadpcm-tools/sdk-tools
 spicy/spicy

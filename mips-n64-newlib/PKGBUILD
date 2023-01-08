@@ -7,6 +7,7 @@ pkgrel=1
 pkgdesc="A C standard library implementation intended for use on embedded systems (${_target})"
 url='https://www.sourceware.org/newlib/'
 arch=('x86_64')
+groups=(n64sdk)
 license=('BSD')
 makedepends=(${_target}-gcc)
 source=(https://sourceware.org/pub/newlib/newlib-${pkgver}.tar.gz)
@@ -24,7 +25,7 @@ build() {
     --disable-threads \
     --disable-libssp \
     --disable-werror
-  make -j$(nproc)
+  make
 }
 
 package() {

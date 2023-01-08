@@ -7,6 +7,7 @@ pkgdesc="QEMU with IRIX userland support"
 pkgver=v2.11.0.r2175.gd2857ad2b5
 pkgrel=1
 arch=('i686' 'x86_64' 'armv7h')
+groups=(n64sdk)
 license=(GPL2 LGPL2.1)
 url="https://github.com/n64decomp/qemu-irix"
 depends=(glib2)
@@ -49,7 +50,7 @@ build() (
     --disable-werror \
     --extra-cflags="-fmacro-prefix-map=${srcdir}=."
 
-  make -j$(nproc)
+  make
 )
 
 package() {

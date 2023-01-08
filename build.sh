@@ -1,39 +1,63 @@
 #!/bin/sh
 
+CHROOT=/home/esm/chroot
+
+if [ -z "$CHROOT" ]; then
+export PKG_CMD="makechrootpkg -c -r $CHROOT --"
+else
+export PKG_CMD="makepkg"
+fi
+
 ./build-archive.sh "$@"
 
 cd n64graphics
-makepkg -Cfs "$@"
+$PKG_CMD -Cfs "$@"
 
 cd ../qemu-irix
-makepkg --noconfirm -Cfsi "$@"
+$PKG_CMD --noconfirm -Cfsi "$@"
 
 cd ../mips-n64-binutils
-makepkg --noconfirm -Cfsi "$@"
+$PKG_CMD --noconfirm -Cfsi "$@"
 
 cd ../mips-n64-gcc-stage1
-makepkg --noconfirm -Cfsi "$@"
+if [ -z "$CHROOT" ]; then
+makechrootpkg -c -r $CHROOT -I "../mips-n64-binutils/mips-n64-binutils-*.pkg.tar.zst" -- --noconfirm -Cfsi "$@"
+else
+$PKG_CMD --noconfirm -Cfsi "$@"
+fi
 
 cd ../mips-n64-newlib
-makepkg --noconfirm -Cfsi "$@"
+if [ -z "$CHROOT" ]; then
+makechrootpkg -c -r $CHROOT -I "../mips-n64-gcc-stage1/mips-n64-gcc-stage1-*.pkg.tar.zst" -- --noconfirm -Cfsi "$@"
+else
+$PKG_CMD --noconfirm -Cfsi "$@"
+fi
 
 cd ../mips-n64-gcc
-makepkg --noconfirm -Cfsi "$@"
+if [ -z "$CHROOT" ]; then
+makechrootpkg -c -r $CHROOT -I "../mips-n64-binutils/mips-n64-binutils-*.pkg.tar.zst" -- --noconfirm -Cfsi "$@"
+else
+$PKG_CMD --noconfirm -Cfsi "$@"
+fi
 
 cd ../root-compatibility-environment
-makepkg -Cf "$@"
+$PKG_CMD -Cf "$@"
 
 cd ../vadpcm-tools
-makepkg --noconfirm -Cfsi "$@"
+if [ -z "$CHROOT" ]; then
+makechrootpkg -c -r $CHROOT -I "../qemu-irix/qemu-irix-*.pkg.tar.zst" -- --noconfirm -Cfsi "$@"
+else
+$PKG_CMD --noconfirm -Cfsi "$@"
+fi
 
 cd ../libstdc++296
-makepkg -Cfs "$@"
+$PKG_CMD -Cfs "$@"
 
 cd ../spicy
-makepkg -Cfs "$@"
+$PKG_CMD -Cfs "$@"
 
 cd ../makemask
-makepkg -Cfs "$@"
+$PKG_CMD -Cfs "$@"
 
 cd ../rspcode-src
-makepkg -Cfd "$@"
+$PKG_CMD -Cfd "$@"

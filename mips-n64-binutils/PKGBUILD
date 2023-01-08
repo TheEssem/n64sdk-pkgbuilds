@@ -8,6 +8,7 @@ pkgdesc="A set of programs to assemble and manipulate binary and object files ($
 url="http://www.gnu.org/software/binutils/"
 arch=('x86_64')
 license=('GPL')
+groups=(n64sdk)
 depends=('libelf')
 source=("ftp://ftp.gnu.org/gnu/binutils/binutils-${pkgver}.tar.xz")
 sha256sums=('820d9724f020a3e69cb337893a0b63c2db161dadcb0e06fc11dc29eb1e84a32c')
@@ -26,7 +27,7 @@ build() {
     --program-prefix=mips-n64- \
     --disable-werror
 
-  make -j$(nproc)
+  make
 }
 
 check() {

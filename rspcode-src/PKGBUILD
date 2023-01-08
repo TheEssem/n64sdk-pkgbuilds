@@ -5,6 +5,7 @@ pkgver=2.0L
 pkgrel=1
 pkgdesc="Source code for the provided N64 RSP microcodes"
 arch=('any')
+groups=(n64sdk)
 depends=('rsp-tools')
 url="https://github.com/CrashOveride95/n64sdkmod"
 license=('custom')

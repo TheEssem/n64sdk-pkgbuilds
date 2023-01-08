@@ -8,6 +8,7 @@ url="https://github.com/depp/makemask"
 makedepends=('go' 'git')
 provides=('makemask')
 arch=('x86_64')
+groups=(n64sdk)
 license=('GPL2')
 source=("git+https://github.com/depp/makemask.git")
 sha256sums=('SKIP')

@@ -8,6 +8,7 @@ url="https://github.com/TheEssem/spicy"
 provides=('spicy')
 makedepends=('go' 'git')
 arch=('x86_64')
+groups=(n64sdk)
 license=('MIT')
 source=("git+https://github.com/TheEssem/spicy.git")
 sha256sums=('SKIP')

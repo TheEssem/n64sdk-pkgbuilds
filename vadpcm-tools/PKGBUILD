@@ -9,15 +9,16 @@ depends=('audiofile' 'qemu-irix')
 makedepends=('git')
 provides=('tabledesign' 'vadpcm_dec' 'vadpcm_enc' 'ic')
 arch=('x86_64')
+groups=(n64sdk)
 license=('custom')
 source=("git+https://github.com/n64decomp/sdk-tools.git")
 sha256sums=('SKIP')
 
 build() {
   cd "${srcdir}"/sdk-tools/adpcm
-  make -j$(nproc)
+  make
   cd "${srcdir}"/sdk-tools/tabledesign
-  make -j$(nproc)
+  make
 }
 
 package() {

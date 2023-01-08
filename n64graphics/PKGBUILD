@@ -8,15 +8,16 @@ url="https://github.com/queueRAM/sm64tools"
 provides=('n64graphics' 'n64graphics_ci')
 makedepends=('git')
 arch=('x86_64')
+groups=(n64sdk)
 license=('MIT')
 source=("git+https://github.com/CrashOveride95/n64sdkmod.git")
 sha256sums=('SKIP')
 
 build() {
   cd "${srcdir}"/n64sdkmod/packages/n64graphics/usr/src/PR/tools/n64graphics
-  make -j$(nproc)
+  make
   cd ../n64graphics_ci
-  make -j$(nproc)
+  make
 }
 
 package() {

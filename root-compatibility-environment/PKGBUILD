@@ -6,6 +6,7 @@ pkgrel=1
 pkgdesc="Some Nintendo SDK programs hard-code usage of the ROOT variable. This package adds compatibility for these programs through a fake symlinked environment."
 url="https://github.com/CrashOveride95/n64sdkmod"
 arch=('i686' 'x86_64')
+groups=(n64sdk)
 license=('custom')
 source=(n64-root.sh)
 sha256sums=('2e1f25da5dee459369a0d2e8043f31d67285c45cf97a9d1492bdd7395fead0a8')
