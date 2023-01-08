@@ -1,7 +1,5 @@
 #!/bin/sh
 
-CHROOT=/home/esm/chroot
-
 if [ -z "$CHROOT" ]; then
 export PKG_CMD="makechrootpkg -c -r $CHROOT --"
 else
