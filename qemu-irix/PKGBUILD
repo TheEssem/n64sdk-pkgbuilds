@@ -4,7 +4,7 @@
 
 pkgname=qemu-irix
 pkgdesc="QEMU with IRIX userland support"
-pkgver=v2.11.0.r2175.gd2857ad2b5
+pkgver=v2.11.0.r2177.g67496be083
 pkgrel=1
 arch=('i686' 'x86_64' 'armv7h')
 groups=(n64sdk)

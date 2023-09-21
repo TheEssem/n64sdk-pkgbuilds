@@ -2,7 +2,7 @@
 
 _target=mips-n64
 pkgname=${_target}-newlib
-pkgver=4.1.0
+pkgver=4.3.0.20230120
 pkgrel=1
 pkgdesc="A C standard library implementation intended for use on embedded systems (${_target})"
 url='https://www.sourceware.org/newlib/'
@@ -11,14 +11,14 @@ groups=(n64sdk)
 license=('BSD')
 makedepends=(${_target}-gcc)
 source=(https://sourceware.org/pub/newlib/newlib-${pkgver}.tar.gz)
-sha256sums=('f296e372f51324224d387cc116dc37a6bd397198756746f93a2b02e9a5d40154')
+sha256sums=('83a62a99af59e38eb9b0c58ed092ee24d700fff43a22c03e433955113ef35150')
 
 build() {
   cd newlib-${pkgver}
 
   INSTALL_PATH=/opt/crashsdk
   
-  RANLIB_FOR_TARGET=${INSTALL_PATH}/bin/mips-n64-ranlib CC_FOR_TARGET=${INSTALL_PATH}/bin/mips-n64-gcc CXX_FOR_TARGET=${INSTALL_PATH}/bin/mips-n64-g++ AR_FOR_TARGET=${INSTALL_PATH}/bin/mips-n64-ar CFLAGS_FOR_TARGET="-mabi=32 -ffreestanding -mfix4300 -G 0 -mno-check-zero-division -fno-PIC -O2" CXXFLAGS_FOR_TARGET="-mabi=32 -ffreestanding -mfix4300 -G 0 -mno-check-zero-division -fno-PIC -O2" ./configure \
+  RANLIB_FOR_TARGET=${INSTALL_PATH}/bin/mips-n64-ranlib CC_FOR_TARGET=${INSTALL_PATH}/bin/mips-n64-gcc CXX_FOR_TARGET=${INSTALL_PATH}/bin/mips-n64-g++ AR_FOR_TARGET=${INSTALL_PATH}/bin/mips-n64-ar CFLAGS_FOR_TARGET="-mabi=32 -ffreestanding -mfix4300 -G 0 -fno-stack-protector -mno-check-zero-division -fno-PIC -fwrapv -Os" CXXFLAGS_FOR_TARGET="-mabi=32 -ffreestanding -mfix4300 -G 0 -fno-stack-protector -mno-check-zero-division -fno-PIC -fwrapv -Os" ./configure \
     --target=mips64-elf \
     --prefix="$INSTALL_PATH" \
     --with-cpu=mips64vr4300 \

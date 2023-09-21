@@ -1,0 +1,26 @@
+# Maintainer: Essem <smswessem@gmail.com>
+
+pkgname=libcart
+pkgver=1.0.e88db1a
+pkgrel=1
+pkgdesc="Library for accessing SD Card on flashcarts; written by devwizard"
+url="https://github.com/devwizard64/libcart"
+depends=('n64sdk')
+makedepends=('git' 'mips-n64-gcc')
+arch=('any')
+groups=(n64sdk)
+options=('!strip')
+license=('custom:MIT-0')
+source=("git+https://github.com/ModernN64SDK/libcart.git#commit=e88db1a")
+sha256sums=('SKIP')
+
+build() {
+  cd "${srcdir}"/libcart
+  PATH="/opt/crashsdk/bin:$PATH" make
+}
+
+package() {
+  install -Dm 755 "${srcdir}"/libcart/lib/libcart.a "${pkgdir}"/usr/lib/n64/libcart.a
+  install -Dm 755 "${srcdir}"/libcart/include/cart.h "${pkgdir}"/usr/include/n64/cart.h
+  install -Dm644 "${srcdir}"/libcart/LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}

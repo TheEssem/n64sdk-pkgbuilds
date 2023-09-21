@@ -3,9 +3,9 @@
 pkgbase=n64sdk
 pkgname=$PKG_NAME
 pkgver=$PKG_VER
-pkgrel=3
+pkgrel=4
 pkgdesc=$PKG_DESC
-url="https://github.com/CrashOveride95/n64sdkmod"
+url="https://github.com/ModernN64SDK/n64sdkmod"
 arch=($PKG_ARCH)
 groups=(n64sdk)
 makedepends=('git')
@@ -19,7 +19,7 @@ if [ -f "$pkgname.install" ];
 then
 install="$pkgname.install"
 fi
-source=("git+https://github.com/CrashOveride95/n64sdkmod.git")
+source=("git+https://github.com/ModernN64SDK/n64sdkmod.git")
 sha256sums=('SKIP')
 
 package() {

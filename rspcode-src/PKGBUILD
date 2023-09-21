@@ -7,9 +7,9 @@ pkgdesc="Source code for the provided N64 RSP microcodes"
 arch=('any')
 groups=(n64sdk)
 depends=('rsp-tools')
-url="https://github.com/CrashOveride95/n64sdkmod"
+url="https://github.com/ModernN64SDK/n64sdkmod"
 license=('custom')
-source=("https://github.com/CrashOveride95/n64sdkmod/raw/master/loose-debs/rspcode-src.deb")
+source=("https://github.com/ModernN64SDK/n64sdkmod/raw/master/loose-debs/rspcode-src.deb")
 sha256sums=('cc5874d1d4ba2ef0c80ba2eb65207b1ff9f2e468d11689526eedb41538a304ee')
 
 package() {

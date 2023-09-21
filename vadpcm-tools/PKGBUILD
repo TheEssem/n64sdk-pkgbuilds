@@ -1,11 +1,11 @@
 # Maintainer: Essem <smswessem@gmail.com>
 
 pkgname=vadpcm-tools
-pkgver=1.0.2
+pkgver=1.0.3
 pkgrel=1
 pkgdesc="VADPCM audio conversion tools"
 url="https://github.com/n64decomp/sdk-tools"
-depends=('audiofile' 'qemu-irix')
+depends=('audiofile' 'n64-irix-env' 'qemu-irix')
 makedepends=('git')
 provides=('tabledesign' 'vadpcm_dec' 'vadpcm_enc' 'ic')
 arch=('x86_64')

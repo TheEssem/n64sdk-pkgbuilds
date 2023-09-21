@@ -2,25 +2,24 @@
 
 _target=mips-n64
 pkgname=${_target}-gcc-stage1
-pkgver=11.2.0
-pkgrel=2
+pkgver=12.2.0
+pkgrel=1
 pkgdesc="The GNU Compiler Collection. Stage 1 for toolchain building (${_target})"
 arch=('x86_64')
 license=('GPL' 'LGPL' 'FDL' 'custom')
 groups=(n64sdk)
-url="http://www.gnu.org/software/gcc/"
-depends=('libmpc' 'zstd')
-makedepends=('gmp' 'mpfr' "${_target}-binutils")
+url="https://www.gnu.org/software/gcc/"
+depends=('libmpc' 'zstd' "${_target}-binutils")
+makedepends=('gmp' 'mpfr')
 options=('!emptydirs' '!distcc' '!strip')
 provides=("${_target}-gcc")
-source=("http://gcc.gnu.org/pub/gcc/releases/gcc-${pkgver}/gcc-${pkgver}.tar.xz")
-sha256sums=('d08edc536b54c372a1010ff6619dd274c0f1603aa49212ba20f7aa2cda36fa8b')
+source=("https://gcc.gnu.org/pub/gcc/releases/gcc-${pkgver}/gcc-${pkgver}.tar.xz" "gcc-vr4300.patch")
+sha256sums=('e549cf9cf3594a00e27b6589d4322d70e0720cdd213f39beb4181e06926230ff' '02bec03aaabd4970cb209ac717c4faec5174e4a982a8145db05ed857a1302bb6')
 
 prepare() {
   cd gcc-${pkgver}
 
-  # link isl for in-tree builds
-  ln -sf ../isl-${_islver} isl
+  patch -p1 < "${srcdir}/gcc-vr4300.patch"
 }
 
 build() {
@@ -51,7 +50,7 @@ build() {
     --with-system-zlib
 
   make all-gcc
-  make all-target-libgcc CFLAGS_FOR_TARGET="-mabi=32 -ffreestanding -mfix4300 -G 0 -mno-check-zero-division -O2"
+  make all-target-libgcc CFLAGS_FOR_TARGET="-mabi=32 -ffreestanding -mfix4300 -G 0 -fno-stack-protector -mno-check-zero-division -fwrapv -Os"
 }
 
 package() {

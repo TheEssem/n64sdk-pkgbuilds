@@ -10,7 +10,7 @@ makedepends=('git')
 arch=('x86_64')
 groups=(n64sdk)
 license=('MIT')
-source=("git+https://github.com/CrashOveride95/n64sdkmod.git")
+source=("git+https://github.com/ModernN64SDK/n64sdkmod.git")
 sha256sums=('SKIP')
 
 build() {
