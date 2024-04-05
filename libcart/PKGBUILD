@@ -1,8 +1,9 @@
 # Maintainer: Essem <smswessem@gmail.com>
 
 pkgname=libcart
-pkgver=1.0.e88db1a
+pkgver=1.0.dea4289
 pkgrel=1
+epoch=1
 pkgdesc="Library for accessing SD Card on flashcarts; written by devwizard"
 url="https://github.com/devwizard64/libcart"
 depends=('n64sdk')
