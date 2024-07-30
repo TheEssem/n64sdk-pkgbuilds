@@ -1,0 +1,33 @@
+# Maintainer: Essem <smswessem@gmail.com>
+
+pkgname=unfloader
+pkgver=2.2
+pkgrel=1
+pkgdesc="A cross-platform and universal Nintendo64 flashcart ROM uploader"
+url="https://github.com/buu342/N64-UNFLoader"
+provides=('UNFLoader')
+depends=('libftdi' 'libusb' 'ncurses')
+makedepends=('git')
+arch=('x86_64')
+groups=(n64sdk)
+license=('custom:WTFPL')
+source=(
+  "git+https://github.com/TheEssem/N64-UNFLoader.git#commit=295711da1c88e467473e090fffb9366b5a061861" # Using a fork for now due to upstream not providing a way to set the install prefix
+  "31-unfloader.rules"
+)
+sha256sums=(
+  'SKIP'
+  '5afaa2cadfaf87e447f40e2b633f21f1fe60b43572207c055e7c7c3d69afe782'
+)
+
+build() {
+  cd "${srcdir}"/N64-UNFLoader
+  make -C UNFLoader
+}
+
+package() {
+  cd "${srcdir}"/N64-UNFLoader
+  make -C UNFLoader install PREFIX="$pkgdir/usr"
+  install -Dm644 "${srcdir}"/31-unfloader.rules "$pkgdir"/usr/lib/udev/rules.d/31-unfloader.rules
+  install -Dm644 "${srcdir}"/N64-UNFLoader/LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}

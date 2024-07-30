@@ -75,3 +75,6 @@ makechrootpkg -c -r $CHROOT -I ../mips-n64-gcc/mips-n64-gcc-*.pkg.tar.zst -I ../
 else
 $PKG_CMD -Cfs "$@"
 fi
+
+cd ../unfloader
+$PKG_CMD -Cfs "$@"

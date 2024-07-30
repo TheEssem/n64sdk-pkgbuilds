@@ -1,0 +1,8 @@
+# 64drive
+SUBSYSTEM=="usb", ATTRS{product}=="64drive USB device", MODE="0660"
+
+# Everdrive
+SUBSYSTEM=="usb", ATTRS{product}=="FT245R USB FIFO", MODE="0660"
+
+# SummerCart64
+SUBSYSTEM=="usb", ATTRS{product}=="SC64", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6014", MODE="0660"
