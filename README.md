@@ -22,3 +22,10 @@ And finally, update your package database:
 ```
 
 For most of these packages, you should be able to build them using `makepkg` and/or the provided build scripts. However, the archive-pkgs directory requires that you run `build-archive.sh`.
+
+## Differences
+Due to the packaging systems, practices, and philosophies differing between Debian and Arch, there are some differences between the original Modern N64 SDK and this repo:
+- The `makemask`, `mips-n64-binutils`, `mips-n64-newlib`, `mips-n64-gcc`, `n64graphics`, `qemu-irix`, `spicy`, `vadpcm-tools`, and `libcart` packages are all rebuilt from source
+- The `unfloader` package is based on version 2.2 instead of 2.1, due to 2.2 using libftdi (which is packaged in the official Arch repos)
+- `libstdc++296` is used instead of `libstdc++2.10-glibc2.2`
+- The `spicy` package uses my own branch that simply specifies the needed build dependencies
