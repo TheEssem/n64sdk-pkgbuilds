@@ -3,7 +3,7 @@
 pkgbase=n64sdk
 pkgname=$PKG_NAME
 pkgver=$PKG_VER
-pkgrel=4
+pkgrel=5
 pkgdesc=$PKG_DESC
 url="https://github.com/ModernN64SDK/n64sdkmod"
 arch=($PKG_ARCH)
@@ -23,5 +23,5 @@ source=("git+https://github.com/ModernN64SDK/n64sdkmod.git")
 sha256sums=('SKIP')
 
 package() {
-  cp -dr --no-preserve='ownership,mode' "${srcdir}/n64sdkmod/packages/$PKG_NAME/$PKG_BASEDIR" "${pkgdir}"
+  cp -dr --no-preserve='ownership' "${srcdir}/n64sdkmod/packages/$PKG_NAME/$PKG_BASEDIR" "${pkgdir}"
 }

@@ -133,6 +133,6 @@ makepkg -Cfd "$@"
 export PKG_NAME=rsp-tools
 export PKG_DESC="N64 RSP assembler and tools"
 export PKG_VER=2.4.4
-export PKG_DEPENDS="libstdc++296 root-compatibility-environment"
+export PKG_DEPENDS="lib32-libstdc++296 root-compatibility-environment"
 export PKG_PROVIDES="buildtask rsp rsp2elf rspasm rsp_ops d2elf csp"
 makepkg -Cfd "$@"
